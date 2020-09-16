@@ -15,12 +15,12 @@ import {
 } from '@material-ui/core';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
+  avatar: '/static/images/avatars/bill.png',
+  city: 'Hamilton',
+  country: 'NZ',
+  jobTitle: 'Fullstack Developer',
+  name: 'Bill Li',
+  timezone: 'GTM+12'
 };
 
 const useStyles = makeStyles(() => ({
@@ -71,16 +71,16 @@ const Profile = ({ className, ...rest }) => {
           </Typography>
         </Box>
       </CardContent>
-      <Divider />
-      <CardActions>
-        <Button
-          color="primary"
-          fullWidth
-          variant="text"
-        >
-          Upload picture
-        </Button>
-      </CardActions>
+      {/*<Divider />*/}
+      {/*<CardActions>*/}
+      {/*  <Button*/}
+      {/*    color="primary"*/}
+      {/*    fullWidth*/}
+      {/*    variant="text"*/}
+      {/*  >*/}
+      {/*    Upload picture*/}
+      {/*  </Button>*/}
+      {/*</CardActions>*/}
     </Card>
   );
 };
