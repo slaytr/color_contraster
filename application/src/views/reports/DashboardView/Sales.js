@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Bar } from 'react-chartjs-2';
 import {
   Box,
   Button,
@@ -9,92 +8,44 @@ import {
   CardContent,
   CardHeader,
   Divider,
-  useTheme,
   makeStyles,
   colors
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import IconButton from "@material-ui/core/IconButton";
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import Paper from "@material-ui/core/Paper";
+import TableContainer from "@material-ui/core/TableContainer";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
+  button: {
+    margin: '4px 4px 0 0'
+  }
 }));
 
 const Sales = ({ className, ...rest }) => {
   const classes = useStyles();
-  const theme = useTheme();
 
-  const data = {
-    datasets: [
-      {
-        backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year'
-      },
-      {
-        backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year'
-      }
-    ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug']
-  };
+  function createData(name, calories, fat, carbs, protein) {
+    return {
+      name, calories, fat, carbs, protein
+    };
+  }
 
-  const options = {
-    animation: false,
-    cornerRadius: 20,
-    layout: { padding: 0 },
-    legend: { display: false },
-    maintainAspectRatio: false,
-    responsive: true,
-    scales: {
-      xAxes: [
-        {
-          barThickness: 12,
-          maxBarThickness: 10,
-          barPercentage: 0.5,
-          categoryPercentage: 0.5,
-          ticks: {
-            fontColor: theme.palette.text.secondary
-          },
-          gridLines: {
-            display: false,
-            drawBorder: false
-          }
-        }
-      ],
-      yAxes: [
-        {
-          ticks: {
-            fontColor: theme.palette.text.secondary,
-            beginAtZero: true,
-            min: 0
-          },
-          gridLines: {
-            borderDash: [2],
-            borderDashOffset: [2],
-            color: theme.palette.divider,
-            drawBorder: false,
-            zeroLineBorderDash: [2],
-            zeroLineBorderDashOffset: [2],
-            zeroLineColor: theme.palette.divider
-          }
-        }
-      ]
-    },
-    tooltips: {
-      backgroundColor: theme.palette.background.default,
-      bodyFontColor: theme.palette.text.secondary,
-      borderColor: theme.palette.divider,
-      borderWidth: 1,
-      enabled: true,
-      footerFontColor: theme.palette.text.secondary,
-      intersect: false,
-      mode: 'index',
-      titleFontColor: theme.palette.text.primary
-    }
-  };
-
+  const rows = [
+    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+    createData('Eclair', 262, 16.0, 24, 6.0),
+    createData('Cupcake', 305, 3.7, 67, 4.3),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+  ];
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -103,14 +54,15 @@ const Sales = ({ className, ...rest }) => {
       <CardHeader
         action={(
           <Button
-            endIcon={<ArrowDropDownIcon />}
-            size="small"
-            variant="text"
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<FileCopyIcon />}
           >
-            Last 7 days
+            Copy Table
           </Button>
         )}
-        title="Latest Sales"
+        title="Contrast Table"
       />
       <Divider />
       <CardContent>
@@ -118,27 +70,51 @@ const Sales = ({ className, ...rest }) => {
           height={400}
           position="relative"
         >
-          <Bar
-            data={data}
-            options={options}
-          />
+          <TableContainer component={Paper}>
+            <Table className={classes.table} size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Colours</TableCell>
+                  <TableCell align="right">Calories</TableCell>
+                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell component="th" scope="row">
+                      <strong>
+                        {row.name}
+                      </strong>
+                    </TableCell>
+                    <TableCell align="right">{row.calories}</TableCell>
+                    <TableCell align="right">{row.fat}</TableCell>
+                    <TableCell align="right">{row.carbs}</TableCell>
+                    <TableCell align="right">{row.protein}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       </CardContent>
-      <Divider />
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-        p={2}
-      >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon />}
-          size="small"
-          variant="text"
-        >
-          Overview
-        </Button>
-      </Box>
+      {/*<Divider />*/}
+      {/*<Box*/}
+      {/*  display="flex"*/}
+      {/*  justifyContent="flex-end"*/}
+      {/*  p={2}*/}
+      {/*>*/}
+      {/*  <Button*/}
+      {/*    color="primary"*/}
+      {/*    endIcon={<ArrowRightIcon />}*/}
+      {/*    size="small"*/}
+      {/*    variant="text"*/}
+      {/*  >*/}
+      {/*    Overview*/}
+      {/*  </Button>*/}
+      {/*</Box>*/}
     </Card>
   );
 };

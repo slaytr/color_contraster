@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   differenceValue: {
     color: colors.green[900],
     marginRight: theme.spacing(1)
+  },
+  buttonSpacing: {
+    margin: '2px 2px 2px 0'
   }
 }));
 
@@ -52,40 +56,30 @@ const TotalCustomers = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL CUSTOMERS
+              Colour List
             </Typography>
-            <Typography
-              color="textPrimary"
-              variant="h3"
-            >
-              1,600
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <PeopleIcon />
-            </Avatar>
           </Grid>
         </Grid>
-        <Box
-          mt={2}
-          display="flex"
-          alignItems="center"
-        >
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
-          <Typography
-            color="textSecondary"
-            variant="caption"
-          >
-            Since last month
-          </Typography>
-        </Box>
+        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
+          #000000
+        </Button>
+        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
+          #ABABAB
+        </Button>
+        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
+          #FFFFFF
+        </Button>
+        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
+          #DDDDDD
+        </Button>
+        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
+          #EEEEEE
+        </Button>
+        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
+          #123123
+        </Button>
+
+
       </CardContent>
     </Card>
   );

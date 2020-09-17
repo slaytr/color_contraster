@@ -10,7 +10,8 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+// import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import BeenhereIcon from '@material-ui/icons/Beenhere';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -43,18 +44,24 @@ const TotalProfit = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL PROFIT
+              Average Ratio
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              $23,200
+              5.5 : 1
+            </Typography>
+            <Typography
+              color="textSecondary"
+              variant="h4"
+            >
+              Excellent!
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <AttachMoneyIcon />
+              <BeenhereIcon />
             </Avatar>
           </Grid>
         </Grid>

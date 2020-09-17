@@ -30,11 +30,10 @@ const TrafficByDevice = ({ className, ...rest }) => {
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [63, 37],
         backgroundColor: [
-          colors.indigo[500],
-          colors.red[600],
-          colors.orange[600]
+          colors.green[500],
+          colors.red[600]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
@@ -68,22 +67,16 @@ const TrafficByDevice = ({ className, ...rest }) => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'Pass',
       value: 63,
       icon: LaptopMacIcon,
-      color: colors.indigo[500]
+      color: colors.green[500]
     },
     {
-      title: 'Tablet',
-      value: 15,
+      title: 'Fail',
+      value: 37,
       icon: TabletIcon,
       color: colors.red[600]
-    },
-    {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
-      color: colors.orange[600]
     }
   ];
 
@@ -92,7 +85,7 @@ const TrafficByDevice = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="WCAG Standards" />
       <Divider />
       <CardContent>
         <Box
