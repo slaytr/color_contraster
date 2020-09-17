@@ -36,7 +36,11 @@ const useStyles = makeStyles((theme) => ({
     margin: '2px 2px 2px 0'
   },
   iconSpacing: {
-    marginRight: '6px'
+    marginRight: '6px',
+    borderRadius: '10px',
+    webkitBoxShadow: '1px 1px 2px 0px rgba(0,0,0, 0.5)',
+    mozBoxShadow: '1px 1px 2px 0px rgba(0,0,0, 0.5)',
+    boxShadow: '1px 1px 1px 0px rgba(0,0,0, 0.3)',
   }
 }));
 
@@ -59,7 +63,7 @@ const ColourList = ({
         value={colour}
       >
         <i
-          className={`fas fa-bookmark ${classes.iconSpacing}`}
+          className={`fas fa-circle ${classes.iconSpacing}`}
           style={{ color: colour }}
         />
         {colour}

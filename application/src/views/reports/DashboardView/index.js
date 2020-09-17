@@ -85,7 +85,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <ContrastTable />
+            <ContrastTable colourList={colours} />
           </Grid>
           <Grid
             item

@@ -26,8 +26,50 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const ContrastTable = ({ className, ...rest }) => {
+const ContrastTable = ({ className, colourList, ...rest }) => {
   const classes = useStyles();
+
+  const hexColours = colourList;
+
+  // HEX TO RGB FUNCTION
+  const hexToRgb = (hex) => {
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
+      return r + r + g + g + b + b;
+    });
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  };
+  // RGB TO LUM FUNCTION
+  const luminance = (r, g, b) => {
+    const a = [r, g, b].map((v) => {
+      v /= 255;
+      return v <= 0.03928
+        ? v / 12.92
+        : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+  };
+  // LUM TO RATIO FUNCTION
+  const calculateRatio = (colourOneLuminance, colourTwoLuminance) => {
+    return colourOneLuminance > colourTwoLuminance
+      ? ((colourTwoLuminance + 0.05) / (colourOneLuminance + 0.05))
+      : ((colourOneLuminance + 0.05) / (colourTwoLuminance + 0.05));
+  };
+
+  const rgbColours = hexColours.map((colour) => {
+    return hexToRgb(colour);
+  });
+  console.log(rgbColours);
+  const lumColours = rgbColours.map(({r, g, b}) => {
+    return luminance(r, g, b);
+  });
+
+  console.log(lumColours)
 
   function createData(hex, name, calories, fat, carbs, protein, ratio) {
     return {
