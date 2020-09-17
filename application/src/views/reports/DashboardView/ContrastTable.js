@@ -9,19 +9,15 @@ import {
   CardHeader,
   Divider,
   makeStyles,
-  colors
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import IconButton from "@material-ui/core/IconButton";
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import Paper from "@material-ui/core/Paper";
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
+import Paper from '@material-ui/core/Paper';
+import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import TableBody from '@material-ui/core/TableBody';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -30,21 +26,22 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Sales = ({ className, ...rest }) => {
+const ContrastTable = ({ className, ...rest }) => {
   const classes = useStyles();
 
-  function createData(name, calories, fat, carbs, protein) {
+  function createData(hex, name, calories, fat, carbs, protein, ratio) {
     return {
-      name, calories, fat, carbs, protein
+      hex, name, calories, fat, carbs, protein, ratio
     };
   }
 
   const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('#000000', 'Frozen yoghurt', 159, 6.0, 24, 4.0, 4.0),
+    createData('#ABABAB', 'Ice cream sandwich', 237, 9.0, 37, 4.3, 4.3),
+    createData('#FFFFFF', 'Eclair', 262, 16.0, 24, 6.0, 6.0),
+    createData('#DDDDDD', 'Cupcake', 305, 3.7, 67, 4.3, 4.3),
+    createData('#EEEEEE', 'Gingebread', 356, 16.0, 49, 3.9, 3.9),
+    createData('#123123', 'Gingerbread', 356, 16.0, 49, 3.9, 3.9),
   ];
   return (
     <Card
@@ -75,10 +72,12 @@ const Sales = ({ className, ...rest }) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Colours</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableCell align="right">#000000</TableCell>
+                  <TableCell align="right">#ABABAB</TableCell>
+                  <TableCell align="right">#FFFFFF</TableCell>
+                  <TableCell align="right">#DDDDDD</TableCell>
+                  <TableCell align="right">#EEEEEE</TableCell>
+                  <TableCell align="right">#123123</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -86,13 +85,15 @@ const Sales = ({ className, ...rest }) => {
                   <TableRow key={row.name}>
                     <TableCell component="th" scope="row">
                       <strong>
-                        {row.name}
+                        {row.hex}
                       </strong>
                     </TableCell>
+                    <TableCell align="right">{row.calories}</TableCell>
                     <TableCell align="right">{row.calories}</TableCell>
                     <TableCell align="right">{row.fat}</TableCell>
                     <TableCell align="right">{row.carbs}</TableCell>
                     <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="right">{row.ratio}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -100,27 +101,27 @@ const Sales = ({ className, ...rest }) => {
           </TableContainer>
         </Box>
       </CardContent>
-      {/*<Divider />*/}
-      {/*<Box*/}
-      {/*  display="flex"*/}
-      {/*  justifyContent="flex-end"*/}
-      {/*  p={2}*/}
-      {/*>*/}
-      {/*  <Button*/}
-      {/*    color="primary"*/}
-      {/*    endIcon={<ArrowRightIcon />}*/}
-      {/*    size="small"*/}
-      {/*    variant="text"*/}
-      {/*  >*/}
-      {/*    Overview*/}
-      {/*  </Button>*/}
-      {/*</Box>*/}
+      {/* <Divider /> */}
+      {/* <Box */}
+      {/*  display="flex" */}
+      {/*  justifyContent="flex-end" */}
+      {/*  p={2} */}
+      {/* > */}
+      {/*  <Button */}
+      {/*    color="primary" */}
+      {/*    endIcon={<ArrowRightIcon />} */}
+      {/*    size="small" */}
+      {/*    variant="text" */}
+      {/*  > */}
+      {/*    Overview */}
+      {/*  </Button> */}
+      {/* </Box> */}
     </Card>
   );
 };
 
-Sales.propTypes = {
+ContrastTable.propTypes = {
   className: PropTypes.string
 };
 
-export default Sales;
+export default ContrastTable;

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
   Avatar,
-  Box,
   Card,
   CardContent,
   Grid,
@@ -32,8 +31,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Budget = ({ className, ...rest }) => {
+const ColourAdder = ({ className, addColour, ...rest }) => {
   const classes = useStyles();
+
+  const [currentColour, setCurrentColour] = useState('#');
+
+  const inputChange = (e) => {
+    if (e.target.value.length < 8 && e.target.value.length > 0) {
+      setCurrentColour(e.target.value);
+    }
+  };
+
+  const validateColour = (colour) => {
+    return !!(colour.match(/#[0-9A-Fa-f]{6}/gi) || colour === '#');
+  };
+
+  const formSubmit = (e) => {
+    if (validateColour(currentColour)) {
+      addColour(currentColour);
+      setCurrentColour('#');
+    }
+    e.preventDefault();
+  };
 
   return (
     <Card
@@ -54,16 +73,16 @@ const Budget = ({ className, ...rest }) => {
             >
               Add Colours
             </Typography>
-            {/*<Typography*/}
-            {/*  color="textPrimary"*/}
-            {/*  variant="h3"*/}
-            {/*>*/}
-            {/*  $24,000*/}
-            {/*</Typography>*/}
-            <form className={classes.root} noValidate autoComplete="off">
-              <TextField id="standard-basic"
-                         label="Hex Code"
-                         placeholder="#000000" />
+
+            <form className={classes.root} noValidate autoComplete="off" onSubmit={formSubmit}>
+              <TextField
+                error={!validateColour(currentColour)}
+                id="standard-basic"
+                label="Hex Code (eg. #000000)"
+                placeholder="#000000"
+                onChange={inputChange}
+                value={currentColour}
+              />
             </form>
           </Grid>
           <Grid item>
@@ -72,32 +91,14 @@ const Budget = ({ className, ...rest }) => {
             </Avatar>
           </Grid>
         </Grid>
-        {/*<Box*/}
-        {/*  mt={2}*/}
-        {/*  display="flex"*/}
-        {/*  alignItems="center"*/}
-        {/*>*/}
-        {/*  <ArrowDownwardIcon className={classes.differenceIcon} />*/}
-        {/*  <Typography*/}
-        {/*    className={classes.differenceValue}*/}
-        {/*    variant="body2"*/}
-        {/*  >*/}
-        {/*    12%*/}
-        {/*  </Typography>*/}
-        {/*  <Typography*/}
-        {/*    color="textSecondary"*/}
-        {/*    variant="caption"*/}
-        {/*  >*/}
-        {/*    Since last month*/}
-        {/*  </Typography>*/}
-        {/*</Box>*/}
       </CardContent>
     </Card>
   );
 };
 
-Budget.propTypes = {
-  className: PropTypes.string
+ColourAdder.propTypes = {
+  className: PropTypes.string,
+  addColour: PropTypes.func
 };
 
-export default Budget;
+export default ColourAdder;

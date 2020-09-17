@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -13,7 +13,8 @@ import {
 } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
-import Button from "@material-ui/core/Button";
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,12 +34,38 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonSpacing: {
     margin: '2px 2px 2px 0'
+  },
+  iconSpacing: {
+    marginRight: '6px'
   }
 }));
 
-const TotalCustomers = ({ className, ...rest }) => {
+const ColourList = ({
+  className, removeColour, getColours, ...rest
+}) => {
+  const [change, setChange] = useState(true);
   const classes = useStyles();
-
+  const deleteColour = (e) => {
+    removeColour(e.target.parentElement.value);
+    setChange(!change);
+  };
+  const colourButtons = getColours.map((colour) => {
+    return (
+      <Button
+        variant="outlined"
+        size="small"
+        className={classes.buttonSpacing}
+        onClick={deleteColour}
+        value={colour}
+      >
+        <i
+          className={`fas fa-bookmark ${classes.iconSpacing}`}
+          style={{ color: colour }}
+        />
+        {colour}
+      </Button>
+    );
+  });
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -60,33 +87,16 @@ const TotalCustomers = ({ className, ...rest }) => {
             </Typography>
           </Grid>
         </Grid>
-        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
-          #000000
-        </Button>
-        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
-          #ABABAB
-        </Button>
-        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
-          #FFFFFF
-        </Button>
-        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
-          #DDDDDD
-        </Button>
-        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
-          #EEEEEE
-        </Button>
-        <Button variant="outlined" size="small" color="#000000" className={classes.buttonSpacing}>
-          #123123
-        </Button>
-
-
+        {colourButtons}
       </CardContent>
     </Card>
   );
 };
 
-TotalCustomers.propTypes = {
-  className: PropTypes.string
+ColourList.propTypes = {
+  className: PropTypes.string,
+  getColours: PropTypes.array,
+  removeColour: PropTypes.func
 };
 
-export default TotalCustomers;
+export default ColourList;

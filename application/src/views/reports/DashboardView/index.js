@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Grid,
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import Budget from './Budget';
+import ColourAdder from './ColourAdder';
 import LatestOrders from './LatestOrders';
 import LatestProducts from './LatestProducts';
-import Sales from './Sales';
+import ContrastTable from './ContrastTable';
 import TasksProgress from './TasksProgress';
-import TotalCustomers from './TotalCustomers';
+import ColourList from './ColourList';
 import TotalProfit from './TotalProfit';
 import TrafficByDevice from './TrafficByDevice';
 
@@ -25,6 +25,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+  const [colours, setColours] = useState([]);
+
+  const addColour = (colour) => {
+    let colourList = [...colours];
+    colourList.push(colour);
+    setColours(colourList);
+  };
+
+  const removeColour = (colour) => {
+    const index = colours.indexOf(colour);
+    if (index > -1) {
+      colours.splice(index, 1);
+    }
+    setColours(colours);
+  };
 
   return (
     <Page
@@ -43,7 +58,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Budget />
+            <ColourAdder addColour={addColour} />
           </Grid>
           <Grid
             item
@@ -52,17 +67,8 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalCustomers />
+            <ColourList getColours={colours} removeColour={removeColour} />
           </Grid>
-          {/*<Grid*/}
-          {/*  item*/}
-          {/*  lg={3}*/}
-          {/*  sm={6}*/}
-          {/*  xl={3}*/}
-          {/*  xs={12}*/}
-          {/*>*/}
-          {/*  <TasksProgress />*/}
-          {/*</Grid>*/}
           <Grid
             item
             lg={3}
@@ -79,7 +85,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <Sales />
+            <ContrastTable />
           </Grid>
           <Grid
             item
@@ -90,24 +96,6 @@ const Dashboard = () => {
           >
             <TrafficByDevice />
           </Grid>
-          {/*<Grid*/}
-          {/*  item*/}
-          {/*  lg={4}*/}
-          {/*  md={6}*/}
-          {/*  xl={3}*/}
-          {/*  xs={12}*/}
-          {/*>*/}
-          {/*  <LatestProducts />*/}
-          {/*</Grid>*/}
-          {/*<Grid*/}
-          {/*  item*/}
-          {/*  lg={8}*/}
-          {/*  md={12}*/}
-          {/*  xl={9}*/}
-          {/*  xs={12}*/}
-          {/*>*/}
-          {/*  <LatestOrders />*/}
-          {/*</Grid>*/}
         </Grid>
       </Container>
     </Page>
