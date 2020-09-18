@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
@@ -23,24 +23,88 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TrafficByDevice = ({ className, ...rest }) => {
+const WCAG = ({ className, getRatiosMatrix,...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const data = {
-    datasets: [
-      {
-        data: [63, 37],
-        backgroundColor: [
-          colors.green[500],
-          colors.red[600]
+  const ratiosMatrix = getRatiosMatrix;
+
+  const data = () => {
+    let good = 0;
+    let pass = 0;
+    let fail = 0;
+    ratiosMatrix.map((ratiosRow) => {
+      ratiosRow.map((ratio) => {
+        if (ratio >= 4.5) {
+          good += 1;
+        } else if (ratio >= 3) {
+          pass += 1;
+        } else if (ratio != 1) {
+          fail += 1;
+        }
+      });
+    });
+    let graphData = [];
+    let backgroundColors = [];
+    let labels = [];
+    let percentageDataList = [];
+    if (good) {
+      // graphData
+      graphData.push(good);
+      backgroundColors.push(colors.green[500]);
+      labels.push('Good');
+
+      // percentageData
+      percentageDataList.push({
+        title: 'Pass',
+        value: Math.round(good/(good+pass+fail)*100),
+        icon: LaptopMacIcon,
+        color: colors.green[500]
+      });
+    }
+    if (pass) {
+      // graphData
+      graphData.push(pass);
+      backgroundColors.push(colors.blue[300]);
+      labels.push('Pass');
+
+      // percentageData
+      percentageDataList.push({
+        title: 'Pass',
+        value: Math.round(pass/(good+pass+fail)*100),
+        icon: LaptopMacIcon,
+        color: colors.blue[500]
+      });
+    }
+    if (fail) {
+      // graphData
+      graphData.push(fail);
+      backgroundColors.push(colors.red[600]);
+      labels.push('Fail');
+
+      // percentageData
+      percentageDataList.push({
+        title: 'Fail',
+        value:  Math.round(fail/(good+pass+fail)*100),
+        icon: LaptopMacIcon,
+        color: colors.red[500]
+      });
+    }
+    return {
+      graphData: {
+        datasets: [
+          {
+            data: graphData,
+            backgroundColor: backgroundColors,
+            borderWidth: 8,
+            borderColor: colors.common.white,
+            hoverBorderColor: colors.common.white
+          }
         ],
-        borderWidth: 8,
-        borderColor: colors.common.white,
-        hoverBorderColor: colors.common.white
-      }
-    ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+        labels: labels
+      },
+      percentageData: percentageDataList
+    };
   };
 
   const options = {
@@ -65,27 +129,12 @@ const TrafficByDevice = ({ className, ...rest }) => {
     }
   };
 
-  const devices = [
-    {
-      title: 'Pass',
-      value: 63,
-      icon: LaptopMacIcon,
-      color: colors.green[500]
-    },
-    {
-      title: 'Fail',
-      value: 37,
-      icon: TabletIcon,
-      color: colors.red[600]
-    }
-  ];
-
   return (
     <Card
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="WCAG Standards" />
+      <CardHeader title="Statistics" />
       <Divider />
       <CardContent>
         <Box
@@ -93,7 +142,7 @@ const TrafficByDevice = ({ className, ...rest }) => {
           position="relative"
         >
           <Doughnut
-            data={data}
+            data={data().graphData}
             options={options}
           />
         </Box>
@@ -102,7 +151,7 @@ const TrafficByDevice = ({ className, ...rest }) => {
           justifyContent="center"
           mt={2}
         >
-          {devices.map(({
+          {data().percentageData ? data().percentageData.map(({
             color,
             icon: Icon,
             title,
@@ -128,15 +177,15 @@ const TrafficByDevice = ({ className, ...rest }) => {
                 %
               </Typography>
             </Box>
-          ))}
+          )) : ''}
         </Box>
       </CardContent>
     </Card>
   );
 };
 
-TrafficByDevice.propTypes = {
+WCAG.propTypes = {
   className: PropTypes.string
 };
 
-export default TrafficByDevice;
+export default WCAG;

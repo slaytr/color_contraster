@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%'
   },
   avatar: {
-    backgroundColor: colors.green[600],
+    backgroundColor: colors.indigo[600],
     height: 56,
     width: 56
   },
@@ -48,7 +48,7 @@ const ColourAdder = ({ className, addColour, ...rest }) => {
 
   const formSubmit = (e) => {
     if (validateColour(currentColour)) {
-      addColour(currentColour);
+      addColour('#' + currentColour.slice(1).toUpperCase());
       setCurrentColour('#');
     }
     e.preventDefault();

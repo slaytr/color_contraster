@@ -15,13 +15,14 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Button from '@material-ui/core/Button';
+import PaletteIcon from "@material-ui/icons/Palette";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
   },
   avatar: {
-    backgroundColor: colors.green[600],
+    backgroundColor: colors.indigo[600],
     height: 56,
     width: 56
   },
@@ -49,10 +50,12 @@ const ColourList = ({
 }) => {
   const [change, setChange] = useState(true);
   const classes = useStyles();
+
   const deleteColour = (e) => {
     removeColour(e.target.parentElement.value);
     setChange(!change);
   };
+
   const colourButtons = getColours.map((colour) => {
     return (
       <Button
@@ -89,6 +92,11 @@ const ColourList = ({
             >
               Colour List
             </Typography>
+          </Grid>
+          <Grid item>
+            <Avatar className={classes.avatar}>
+              <PaletteIcon />
+            </Avatar>
           </Grid>
         </Grid>
         {colourButtons}
