@@ -96,7 +96,7 @@ const Dashboard = () => {
   return (
     <Page
       className={classes.root}
-      title="Dashboard"
+      title="Cross Contrast"
     >
       <Container maxWidth={false}>
         <Grid
