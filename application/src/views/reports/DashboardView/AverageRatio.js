@@ -66,14 +66,14 @@ const AverageRatio = ({ className, getRatiosMatrix, ...rest }) => {
         >
           <Grid item>
             <Typography
-              color="textSecondary"
+              color="textPrimary"
               gutterBottom
-              variant="h6"
+              variant="h5"
             >
               Average Ratio
             </Typography>
             <Typography
-              color="textPrimary"
+              color="textSecondary"
               variant="h3"
             >
               {ratiosMatrix.length > 1 ? getAverageRatio() : '0'}

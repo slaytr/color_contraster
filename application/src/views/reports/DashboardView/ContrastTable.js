@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -8,10 +8,11 @@ import {
   CardContent,
   CardHeader,
   colors,
-  Divider,
-  makeStyles,
+  Divider, Grid,
+  makeStyles, Typography,
 } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 import Paper from '@material-ui/core/Paper';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
@@ -36,6 +37,12 @@ const useStyles = makeStyles(() => ({
   },
   cellBlue: {
     backgroundColor: colors.blue[200]
+  },
+  iconSpacing: {
+    margin: '0 2px'
+  },
+  renewButton: {
+    margin: '4px 10px 0 0'
   }
 }));
 
@@ -44,7 +51,7 @@ const ContrastTable = ({ className, getColours, getRatiosMatrix, ...rest }) => {
 
   const ratiosMatrix = getRatiosMatrix;
   const colours = getColours;
-
+  const [refresh, setRefresh] = useState(false);
   // Returns the Cell Colour
   const getColour = (ratio) => {
     if (ratio == 1) return classes.cellGrey;
@@ -107,20 +114,39 @@ const ContrastTable = ({ className, getColours, getRatiosMatrix, ...rest }) => {
     >
       <CardHeader
         action={(
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<FileCopyIcon />}
-            onClick={copyTableToClipboard}
-          >
-            Copy Table
-          </Button>
+          <>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<FileCopyIcon />}
+              onClick={copyTableToClipboard}
+            >
+              Copy Table
+            </Button>
+          </>
         )}
         title="Contrast Table"
       />
       <Divider />
       <CardContent>
+        <Typography
+          color="textSecondary"
+          gutterBottom
+          variant="h6"
+        >
+          Ratio Colour Key: <i
+            className={`fas fa-circle ${classes.iconSpacing}`}
+            style={{ color: colors.red[200] }}
+          /> 1-3 <i
+          className={`fas fa-circle ${classes.iconSpacing}`}
+          style={{ color: colors.blue[200] }}
+        /> 3-4.5 <i
+          className={`fas fa-circle ${classes.iconSpacing}`}
+          style={{ color: colors.green[200] }}
+        /> 4.5+
+        </Typography>
+        <Divider />
         <Box
           height={400}
           position="relative"

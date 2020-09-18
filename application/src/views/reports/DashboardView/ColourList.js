@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     webkitBoxShadow: '1px 1px 2px 0px rgba(0,0,0, 0.5)',
     mozBoxShadow: '1px 1px 2px 0px rgba(0,0,0, 0.5)',
-    boxShadow: '1px 1px 1px 0px rgba(0,0,0, 0.3)',
+    boxShadow: '1px 1px 1px 0px rgba(0,0,0, 0.3)'
   }
 }));
 
@@ -64,6 +64,7 @@ const ColourList = ({
         className={classes.buttonSpacing}
         onClick={deleteColour}
         value={colour}
+
       >
         <i
           className={`fas fa-circle ${classes.iconSpacing}`}
@@ -86,11 +87,18 @@ const ColourList = ({
         >
           <Grid item>
             <Typography
+              color="textPrimary"
+              gutterBottom
+              variant="h5"
+            >
+              List of Table Colours
+            </Typography>
+            <Typography
               color="textSecondary"
               gutterBottom
               variant="h6"
             >
-              Colour List
+              <em>Click to remove</em>
             </Typography>
           </Grid>
           <Grid item>

@@ -173,6 +173,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
             color="primary"
             component="a"
             href="https://www.cs.waikato.ac.nz/ml/weka/"
+            target="_blank"
             variant="contained"
           >
             See More

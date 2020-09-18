@@ -8,10 +8,11 @@ import {
   Grid,
   Typography,
   colors,
-  makeStyles
+  makeStyles, CardHeader, Button, Divider
 } from '@material-ui/core';
 import BrushIcon from '@material-ui/icons/Brush';
 import TextField from '@material-ui/core/TextField';
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,13 +68,12 @@ const ColourAdder = ({ className, addColour, ...rest }) => {
         >
           <Grid item>
             <Typography
-              color="textSecondary"
+              color="textPrimary"
               gutterBottom
-              variant="h6"
+              variant="h5"
             >
               Add Colours
             </Typography>
-
             <form className={classes.root} noValidate autoComplete="off" onSubmit={formSubmit}>
               <TextField
                 error={!validateColour(currentColour)}

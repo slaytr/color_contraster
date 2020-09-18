@@ -7,6 +7,7 @@ import {
 import Page from 'src/components/Page';
 import ColourAdder from './ColourAdder';
 import ContrastTable from './ContrastTable';
+import LatestProducts from './LatestProducts';
 import ColourList from './ColourList';
 import AverageRatio from './AverageRatio';
 import WCAG from './WCAG';
@@ -147,6 +148,15 @@ const Dashboard = () => {
             xs={12}
           >
             <WCAG getRatiosMatrix={ratios}/>
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            sm={12}
+            xl={3}
+            xs={12}
+          >
+            <LatestProducts />
           </Grid>
         </Grid>
       </Container>

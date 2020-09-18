@@ -18,6 +18,14 @@ import {
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
+import TableContainer from "@material-ui/core/TableContainer";
 
 const data = [
   {
@@ -59,6 +67,9 @@ const useStyles = makeStyles(({
   image: {
     height: 48,
     width: 48
+  },
+  bottomSpacing: {
+    margin: '0 0 16px 0'
   }
 }));
 
@@ -73,36 +84,51 @@ const LatestProducts = ({ className, ...rest }) => {
     >
       <CardHeader
         subtitle={`${products.length} in total`}
-        title="Latest Products"
+        title="Web Content Accessibility Guidelines (WCAG)"
       />
       <Divider />
-      <List>
-        {products.map((product, i) => (
-          <ListItem
-            divider={i < products.length - 1}
-            key={product.id}
-          >
-            <ListItemAvatar>
-              <img
-                alt="Product"
-                className={classes.image}
-                src={product.imageUrl}
-              />
-            </ListItemAvatar>
-            <ListItemText
-              primary={product.name}
-              secondary={`Updated ${product.updatedAt.fromNow()}`}
-            />
-            <IconButton
-              edge="end"
-              size="small"
-            >
-              <MoreVertIcon />
-            </IconButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
+      <CardContent>
+        <Typography className={classes.bottomSpacing}>
+          <strong>Cross Contrast</strong> measures the differences between foreground and background colours with respect to <strong>WCAG 2.0/2.1</strong>. An ISO standard: ISO/IE 40500:2012.
+        </Typography>
+        <Table id="wcag-standards" className={classes.table} size="small" aria-label="wcag-standards">
+          <TableHead>
+            <TableRow key="wcag-head">
+              <TableCell>Standard</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Minimum Ratio</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>AA</TableCell>
+              <TableCell>Graphics and UI</TableCell>
+              <TableCell>3 : 1</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>AA</TableCell>
+              <TableCell>Normal Text</TableCell>
+              <TableCell>4.5 : 1</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>AAA</TableCell>
+              <TableCell>Normal Text</TableCell>
+              <TableCell>7 : 1</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>AA</TableCell>
+              <TableCell>Large Text</TableCell>
+              <TableCell>3 : 1</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>AAA</TableCell>
+              <TableCell>Large Text</TableCell>
+              <TableCell>4.5 : 1</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardContent>
+
       <Box
         display="flex"
         justifyContent="flex-end"
@@ -110,11 +136,12 @@ const LatestProducts = ({ className, ...rest }) => {
       >
         <Button
           color="primary"
-          endIcon={<ArrowRightIcon />}
+          href="https://www.w3.org/WAI/standards-guidelines/wcag/"
+          target="_blank"
           size="small"
           variant="text"
         >
-          View all
+          View More
         </Button>
       </Box>
     </Card>
