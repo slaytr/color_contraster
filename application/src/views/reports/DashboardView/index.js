@@ -6,10 +6,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import ColourAdder from './ColourAdder';
-import LatestOrders from './LatestOrders';
-import LatestProducts from './LatestProducts';
 import ContrastTable from './ContrastTable';
-import TasksProgress from './TasksProgress';
 import ColourList from './ColourList';
 import AverageRatio from './AverageRatio';
 import WCAG from './WCAG';
@@ -119,7 +116,7 @@ const Dashboard = () => {
             item
             lg={5}
             sm={6}
-            xl={3}
+            xl={6}
             xs={12}
           >
             <ColourList getColours={colours} removeColour={removeColour} />
@@ -135,7 +132,7 @@ const Dashboard = () => {
           </Grid>
           <Grid
             item
-            lg={8}
+            lg={9}
             md={12}
             xl={9}
             xs={12}
@@ -144,7 +141,7 @@ const Dashboard = () => {
           </Grid>
           <Grid
             item
-            lg={4}
+            lg={3}
             md={6}
             xl={3}
             xs={12}

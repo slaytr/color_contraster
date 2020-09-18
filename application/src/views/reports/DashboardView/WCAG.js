@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
@@ -14,8 +14,6 @@ import {
   useTheme
 } from '@material-ui/core';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIcon from '@material-ui/icons/Phone';
-import TabletIcon from '@material-ui/icons/Tablet';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -56,7 +54,7 @@ const WCAG = ({ className, getRatiosMatrix,...rest }) => {
 
       // percentageData
       percentageDataList.push({
-        title: 'Pass',
+        title: 'Good',
         value: Math.round(good/(good+pass+fail)*100),
         icon: LaptopMacIcon,
         color: colors.green[500]
@@ -66,11 +64,11 @@ const WCAG = ({ className, getRatiosMatrix,...rest }) => {
       // graphData
       graphData.push(pass);
       backgroundColors.push(colors.blue[300]);
-      labels.push('Pass');
+      labels.push('Ok');
 
       // percentageData
       percentageDataList.push({
-        title: 'Pass',
+        title: 'Ok',
         value: Math.round(pass/(good+pass+fail)*100),
         icon: LaptopMacIcon,
         color: colors.blue[500]

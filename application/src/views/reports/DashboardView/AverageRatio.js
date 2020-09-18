@@ -31,7 +31,6 @@ const AverageRatio = ({ className, getRatiosMatrix, ...rest }) => {
   const getAverageRatio = () => {
     let total = 0;
     let sum = 0;
-    console.log(sum, total)
     ratiosMatrix.map((ratiosRow) => {
       ratiosRow.map((ratio) => {
         if (ratio != 1) {

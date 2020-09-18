@@ -67,8 +67,8 @@ const ContrastTable = ({ className, getColours, getRatiosMatrix, ...rest }) => {
             {colours[i]}
           </strong>
         </TableCell>
-        {ratioRow.map((ratio) => {
-          return <TableCell align="center" className={`ratio-cell ${getColour(ratio)}`}>{ratio}</TableCell>;
+        {ratioRow.map((ratio, j) => {
+          return <TableCell key={colours[i] + ratio} align="center" className={`ratio-cell ${getColour(ratio)}`}>{ratio}</TableCell>;
         })}
       </TableRow>
     );
@@ -128,7 +128,7 @@ const ContrastTable = ({ className, getColours, getRatiosMatrix, ...rest }) => {
           {colours.length > 0 ? (<TableContainer component={Paper}>
             <Table id="contrast-table" className={classes.table} size="small" aria-label="a dense table">
               <TableHead>
-                <TableRow>
+                <TableRow key="header-row">
                   <TableCell>Colours</TableCell>
                   {tableHeaderCells}
                 </TableRow>
@@ -140,21 +140,6 @@ const ContrastTable = ({ className, getColours, getRatiosMatrix, ...rest }) => {
           </TableContainer>) : '' }
         </Box>
       </CardContent>
-      {/* <Divider /> */}
-      {/* <Box */}
-      {/*  display="flex" */}
-      {/*  justifyContent="flex-end" */}
-      {/*  p={2} */}
-      {/* > */}
-      {/*  <Button */}
-      {/*    color="primary" */}
-      {/*    endIcon={<ArrowRightIcon />} */}
-      {/*    size="small" */}
-      {/*    variant="text" */}
-      {/*  > */}
-      {/*    Overview */}
-      {/*  </Button> */}
-      {/* </Box> */}
     </Card>
   );
 };
