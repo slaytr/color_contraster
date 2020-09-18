@@ -24,8 +24,35 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TotalProfit = ({ className, ...rest }) => {
+const AverageRatio = ({ className, getRatiosMatrix, ...rest }) => {
   const classes = useStyles();
+  const ratiosMatrix = getRatiosMatrix;
+
+  const getAverageRatio = () => {
+    let total = 0;
+    let sum = 0;
+    console.log(sum, total)
+    ratiosMatrix.map((ratiosRow) => {
+      ratiosRow.map((ratio) => {
+        if (ratio != 1) {
+          total += 1;
+          sum += parseFloat(ratio);
+        }
+      });
+    });
+    return (sum / total).toFixed(2);
+  };
+
+  const ratio = getAverageRatio();
+  let ratioComment = () => {
+    if (ratio > 3) {
+      return "Excellent!";
+    }
+    if (ratio > 2) {
+      return "Acceptable";
+    }
+    return "No Good";
+  };
 
   return (
     <Card
@@ -50,13 +77,13 @@ const TotalProfit = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              5.5 : 1
+              {ratiosMatrix.length > 1 ? getAverageRatio() : '0'}
             </Typography>
             <Typography
               color="textSecondary"
               variant="h4"
             >
-              Excellent!
+              {ratiosMatrix.length > 1 ? ratioComment() : ''}
             </Typography>
           </Grid>
           <Grid item>
@@ -70,8 +97,8 @@ const TotalProfit = ({ className, ...rest }) => {
   );
 };
 
-TotalProfit.propTypes = {
+AverageRatio.propTypes = {
   className: PropTypes.string
 };
 
-export default TotalProfit;
+export default AverageRatio;

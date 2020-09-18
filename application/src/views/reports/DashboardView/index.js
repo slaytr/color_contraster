@@ -11,7 +11,7 @@ import LatestProducts from './LatestProducts';
 import ContrastTable from './ContrastTable';
 import TasksProgress from './TasksProgress';
 import ColourList from './ColourList';
-import TotalProfit from './TotalProfit';
+import AverageRatio from './AverageRatio';
 import WCAG from './WCAG';
 
 const useStyles = makeStyles((theme) => ({
@@ -131,7 +131,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalProfit />
+            <AverageRatio getRatiosMatrix={ratios} />
           </Grid>
           <Grid
             item

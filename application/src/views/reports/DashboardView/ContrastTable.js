@@ -44,8 +44,6 @@ const ContrastTable = ({ className, getColours, getRatiosMatrix, ...rest }) => {
 
   const ratiosMatrix = getRatiosMatrix;
   const colours = getColours;
-  // console.log(colours)
-  // console.log(ratiosMatrix)
 
   // Returns the Cell Colour
   const getColour = (ratio) => {
