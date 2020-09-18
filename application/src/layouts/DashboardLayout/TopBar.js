@@ -9,18 +9,20 @@ import {
   Hidden,
   IconButton,
   Toolbar,
-  makeStyles
+  makeStyles, Grid
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
 import Logo from 'src/components/Logo';
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(() => ({
   root: {},
   avatar: {
     width: 60,
     height: 60
+  },
+  header: {
+    paddingLeft: "20px"
   }
 }));
 
@@ -42,21 +44,19 @@ const TopBar = ({
         <RouterLink to="/">
           <Logo />
         </RouterLink>
+        <Typography
+          variant="h1"
+          className={classes.header}
+        >
+          Cross Contrast
+        </Typography>
+        <Typography
+          variant="h6"
+          className={classes.header}
+        >
+          v1.0.0
+        </Typography>
         <Box flexGrow={1} />
-        {/*<Hidden mdDown>*/}
-        {/*  <IconButton color="inherit">*/}
-        {/*    <Badge*/}
-        {/*      badgeContent={notifications.length}*/}
-        {/*      color="primary"*/}
-        {/*      variant="dot"*/}
-        {/*    >*/}
-        {/*      <NotificationsIcon />*/}
-        {/*    </Badge>*/}
-        {/*  </IconButton>*/}
-        {/*  <IconButton color="inherit">*/}
-        {/*    <InputIcon />*/}
-        {/*  </IconButton>*/}
-        {/*</Hidden>*/}
         <Hidden lgUp>
           <IconButton
             color="inherit"
