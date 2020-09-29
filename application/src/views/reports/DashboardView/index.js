@@ -153,7 +153,7 @@ const Dashboard = () => {
             item
             lg={4}
             sm={12}
-            xl={3}
+            xl={4}
             xs={12}
           >
             <LatestProducts />

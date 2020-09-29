@@ -54,7 +54,7 @@ const TopBar = ({
           variant="h6"
           className={classes.header}
         >
-          v1.0.1
+          v1.0.2
         </Typography>
         <Box flexGrow={1} />
         <Hidden lgUp>

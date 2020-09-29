@@ -72,7 +72,7 @@ const ColourAdder = ({ className, addColour, ...rest }) => {
               gutterBottom
               variant="h5"
             >
-              Add Colours
+              Add Colors
             </Typography>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={formSubmit}>
               <TextField

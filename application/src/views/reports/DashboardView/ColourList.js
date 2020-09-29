@@ -91,7 +91,7 @@ const ColourList = ({
               gutterBottom
               variant="h5"
             >
-              List of Table Colours
+              My Colors
             </Typography>
             <Typography
               color="textSecondary"

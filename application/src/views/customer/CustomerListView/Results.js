@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   avatar: {
     marginRight: theme.spacing(2)
+  },
+  tableTitle: {
+    margin: "20px"
   }
 }));
 
@@ -79,20 +82,28 @@ const Results = ({ className, customers, ...rest }) => {
     >
       <PerfectScrollbar>
         <Box minWidth={1050}>
+          <Typography
+            color="textPrimary"
+            gutterBottom
+            variant="h2"
+            className={classes.tableTitle}
+          >
+            Contributors
+          </Typography>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedCustomerIds.length === customers.length}
-                    color="primary"
-                    indeterminate={
-                      selectedCustomerIds.length > 0
-                      && selectedCustomerIds.length < customers.length
-                    }
-                    onChange={handleSelectAll}
-                  />
-                </TableCell>
+                {/*<TableCell padding="checkbox">*/}
+                {/*  <Checkbox*/}
+                {/*    checked={selectedCustomerIds.length === customers.length}*/}
+                {/*    color="primary"*/}
+                {/*    indeterminate={*/}
+                {/*      selectedCustomerIds.length > 0*/}
+                {/*      && selectedCustomerIds.length < customers.length*/}
+                {/*    }*/}
+                {/*    onChange={handleSelectAll}*/}
+                {/*  />*/}
+                {/*</TableCell>*/}
                 <TableCell>
                   Name
                 </TableCell>
@@ -100,13 +111,13 @@ const Results = ({ className, customers, ...rest }) => {
                   Email
                 </TableCell>
                 <TableCell>
-                  Location
+                  Country
                 </TableCell>
                 <TableCell>
-                  Phone
+                  Role
                 </TableCell>
                 <TableCell>
-                  Registration date
+                  First Contribution
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -117,13 +128,13 @@ const Results = ({ className, customers, ...rest }) => {
                   key={customer.id}
                   selected={selectedCustomerIds.indexOf(customer.id) !== -1}
                 >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
-                      value="true"
-                    />
-                  </TableCell>
+                  {/*<TableCell padding="checkbox">*/}
+                  {/*  <Checkbox*/}
+                  {/*    checked={selectedCustomerIds.indexOf(customer.id) !== -1}*/}
+                  {/*    onChange={(event) => handleSelectOne(event, customer.id)}*/}
+                  {/*    value="true"*/}
+                  {/*  />*/}
+                  {/*</TableCell>*/}
                   <TableCell>
                     <Box
                       alignItems="center"
@@ -147,10 +158,10 @@ const Results = ({ className, customers, ...rest }) => {
                     {customer.email}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {customer.address.country}
                   </TableCell>
                   <TableCell>
-                    {customer.phone}
+                    {customer.role}
                   </TableCell>
                   <TableCell>
                     {moment(customer.createdAt).format('DD/MM/YYYY')}

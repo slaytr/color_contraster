@@ -10,7 +10,7 @@ import {
   Hidden,
   List,
   Typography,
-  makeStyles
+  makeStyles, Grid
 } from '@material-ui/core';
 import {
   AlertCircle as AlertCircleIcon,
@@ -23,6 +23,8 @@ import {
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
+import GithubIcon from "@material-ui/icons/GitHub";
+import BrushIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 const user = {
   avatar: '/static/images/avatars/bill.png',
@@ -32,15 +34,15 @@ const user = {
 
 const items = [
   {
-    href: '/app/dashboard',
+    href: '/dashboard/cross-contrast',
     icon: BarChartIcon,
-    title: 'Dashboard'
+    title: 'Cross Contrast'
   },
-  // {
-  //   href: '/app/customers',
-  //   icon: UsersIcon,
-  //   title: 'Customers'
-  // },
+  {
+    href: '/dashboard/contributors',
+    icon: UsersIcon,
+    title: 'Contributors'
+  },
   // {
   //   href: '/app/products',
   //   icon: ShoppingBagIcon,
@@ -146,6 +148,40 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </List>
       </Box>
       <Box flexGrow={1} />
+      <Box
+        p={2}
+        m={2}
+        bgcolor="background.dark"
+      >
+        <Typography
+          align="center"
+          gutterBottom
+          variant="h4"
+        >
+          Open Source
+        </Typography>
+        <Typography
+          align="center"
+          variant="body2"
+        >
+          Cross Contrast is free to copy, use and distribute under the MIT License
+        </Typography>
+        <Box
+          display="flex"
+          justifyContent="center"
+          mt={2}
+        >
+          <Button
+            color="default"
+            component="a"
+            href="https://github.com/slaytr/color_contraster"
+            target="_blank"
+            variant="contained"
+          >
+            <GithubIcon />
+          </Button>
+        </Box>
+      </Box>
       <Box
         p={2}
         m={2}

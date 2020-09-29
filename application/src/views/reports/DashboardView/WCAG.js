@@ -132,7 +132,7 @@ const WCAG = ({ className, getRatiosMatrix,...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Statistics" />
+      <CardHeader title="Contrast Table Stats" />
       <Divider />
       <CardContent>
         <Box
